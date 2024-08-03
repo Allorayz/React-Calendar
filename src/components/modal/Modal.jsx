@@ -45,7 +45,7 @@ const Modal = ({ language, state, close, createEvent }) => {
       }
     }
 
-    if (errors.length) errors.forEach((error) => alert(error));
+    if (errors.length) return errors.forEach((error) => alert(error));
 
     createEvent(formData);
   };
