@@ -85,7 +85,7 @@ const Modal = ({ language, state, close, createEvent }) => {
                 type="time"
                 name="dateFrom"
                 onChange={handleField}
-                value={formData.startTime}
+                value={formData.dateFrom}
                 className="event-form__field"
               />
               <span>-</span>
@@ -93,7 +93,7 @@ const Modal = ({ language, state, close, createEvent }) => {
                 type="time"
                 name="dateTo"
                 onChange={handleField}
-                value={formData.endTime}
+                value={formData.dateTo}
                 className="event-form__field"
               />
             </div>

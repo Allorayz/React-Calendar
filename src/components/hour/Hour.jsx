@@ -10,6 +10,7 @@ import { generateDateString } from "../../gateway/generateDateString";
 import { createEventModalInitialState } from "../../gateway/createEventModalInitialState";
 
 import "./hour.scss";
+import { correctNumber } from "../../gateway/correctNumber";
 
 const RedLine = ({ show }) => {
   const currentDate = parseDate(new Date());
@@ -35,6 +36,8 @@ const Hour = ({
     showCreateEventModal({
       ...createEventModalInitialState,
       date: generateDateString(dayDate),
+      dateFrom: `${correctNumber(dataHour)}:00`,
+      dateTo: `${correctNumber(dataHour + 1)}:00`,
     });
   };
 
