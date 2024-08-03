@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  height: 60px;
+  padding: 0 48px;
+  align-items: center;
+
+	&__language {
+		display: flex;
+		flex-grow: 1;
+		height: 100%;
+		justify-content: end;
+		align-items: center;
+	}
+}
+
+.create-event-btn {
+  padding: 0 16px;
+
+  &__icon {
+    margin-right: 8px;
+  }
+}
+
+.navigation {
+  &__today-btn {
+    margin-left: 32px;
+    padding: 0 16px;
+  }
+
+  &__nav-icon {
+    font-size: 16px;
+    margin-left: 20px;
+  }
+
+  &__displayed-month {
+		color: cornflowerblue;
+		font-size: 18px;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,25 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+
+  &__time-scale {
+    height: 100%;
+    width: 48px;
+  }
+}
+
+.time-slot {
+	position: relative;
+	height: 60px;
+  width: 48px;
+
+  &__time {
+    position: absolute;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-right: 4px;
+		transform: translate(-120%, -50%);
+		margin-left: 100%;
+  }
+}
