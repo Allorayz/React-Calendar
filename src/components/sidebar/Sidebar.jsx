@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { correctNumber } from '../../gateway/correctNumber';
-import { generateArray } from '../../gateway/generateArray';
+import { correctNumber } from "../../gateway/correctNumber";
+import { generateArray } from "../../gateway/generateArray";
 
-import './sidebar.scss';
+import "./sidebar.scss";
 
 const Sidebar = () => {
   const hours = generateArray(24);
@@ -11,13 +11,8 @@ const Sidebar = () => {
   return (
     <div className="calendar__time-scale">
       {hours.map((hour) => (
-        <div 
-					key={hour} 
-					className="time-slot"
-				>
-          <span className="time-slot__time">
-						{`${correctNumber(hour)}:00`}
-					</span>
+        <div key={hour} className="time-slot">
+          <span className="time-slot__time">{`${correctNumber(hour)}:00`}</span>
         </div>
       ))}
     </div>
