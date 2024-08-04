@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { parseDate } from "../gateway/parseDate";
 import {
   getEvents,
   postEvent,
@@ -88,6 +89,28 @@ export const useEvents = () => {
 
     delete newEvent.date;
 
+    const newEventDateTo = parseDate(newEvent.dateTo);
+    const newEventDateFrom = parseDate(newEvent.dateFrom);
+
+    if (newEventDateTo.hours < newEventDateFrom.hours) {
+      alert("The event cannot end before it starts.");
+      return true;
+    }
+
+    if (newEventDateTo.hours - newEventDateFrom.hours > 6) {
+      alert("The event cannot last longer than 6 hours.");
+      return true;
+    }
+
+    const isOneDayAndOneTime = events.find((event) => {
+      return isOneDayAndOneTimeEvent(event, newEvent);
+    });
+
+    if (isOneDayAndOneTime) {
+      alert("This time is occupied by another event.");
+      return true;
+    }
+
     const isEventPosted = await request(
       eventsRequestConfigs.postEvent(newEvent),
     );
@@ -97,11 +120,56 @@ export const useEvents = () => {
     return isEventPosted;
   };
 
+  const isOneDayAndOneTimeEvent = (event, newEvent) => {
+    const eventDateTo = parseDate(event.dateTo);
+    const eventDateFrom = parseDate(event.dateFrom);
+    const newEventDateFrom = parseDate(newEvent.dateFrom);
+
+    const isOneDay =
+      newEventDateFrom.year === eventDateFrom.year &&
+      newEventDateFrom.month === eventDateFrom.month &&
+      newEventDateFrom.day === eventDateFrom.day;
+
+    return (
+      (isOneDay &&
+        newEventDateFrom.hours === eventDateFrom.hours &&
+        newEventDateFrom.minutes === eventDateFrom.minutes) ||
+      (isOneDay &&
+        newEventDateFrom.hours >= eventDateFrom.hours &&
+        newEventDateFrom.hours <= eventDateTo.hours &&
+        newEventDateFrom.minutes <= eventDateTo.minutes)
+    );
+  };
+
   const createEvent = (event) => waitToFetch(() => eventCreationProcess(event));
 
+  const isTimeRunningOut = (dateFrom) => {
+    const eventDate = parseDate(dateFrom);
+    const currentDate = parseDate(new Date());
+
+    return (
+      eventDate.hours === currentDate.hours &&
+      currentDate.minutes + 15 >= eventDate.minutes
+    );
+  };
+
   const eventDeletionProcess = async (id) => {
+    if (!id) return false;
+
+    const event = events.find((event) => event.id === id);
+
+    if (!event) {
+      alert(`Event with id: ${id} does not found!`);
+      return true;
+    }
+
+    if (isTimeRunningOut(event.dateFrom)) {
+      alert("It is impossible to delete an event 15 minutes before it starts");
+      return true;
+    }
+
     await request(eventsRequestConfigs.deleteEvent(id));
-    fetchEvents();
+    await fetchEvents();
 
     return true;
   };
@@ -117,6 +185,7 @@ export const useEvents = () => {
   const fetchEvents = async () => {
     const events = await request(eventsRequestConfigs.getEvents());
     setEvents(events.map(transformEventDates));
+    return events;
   };
 
   useEffect(fetchEvents, []);

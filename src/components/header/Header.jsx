@@ -7,6 +7,7 @@ import Switch from "../switch/Switch";
 
 import { parseDate } from "../../gateway/parseDate";
 import { getWeekStartDate, months } from "../../utils/dateUtils";
+import { generateCreateEventModalFormData } from "../../gateway/generateDateString";
 
 import "./header.scss";
 
@@ -21,7 +22,7 @@ const Header = ({
   const showCurrentWeek = () => changeCurrentWeek("current");
 
   const showCreateEventModalCallback = () => {
-    showCreateEventModal();
+    showCreateEventModal(generateCreateEventModalFormData(new Date()));
   };
 
   const getCurrentWeekMonthPeriod = (date) => {

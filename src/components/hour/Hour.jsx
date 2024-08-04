@@ -6,11 +6,9 @@ import Event from "../event/Event";
 /* components */
 
 import { parseDate } from "../../gateway/parseDate";
-import { generateDateString } from "../../gateway/generateDateString";
-import { createEventModalInitialState } from "../../gateway/createEventModalInitialState";
+import { generateCreateEventModalFormData } from "../../gateway/generateDateString";
 
 import "./hour.scss";
-import { correctNumber } from "../../gateway/correctNumber";
 
 const RedLine = ({ show }) => {
   const currentDate = parseDate(new Date());
@@ -33,12 +31,7 @@ const Hour = ({
   showCreateEventModal,
 }) => {
   const handleTimeSlotClick = () => {
-    showCreateEventModal({
-      ...createEventModalInitialState,
-      date: generateDateString(dayDate),
-      dateFrom: `${correctNumber(dataHour)}:00`,
-      dateTo: `${correctNumber(dataHour + 1)}:00`,
-    });
+    showCreateEventModal(generateCreateEventModalFormData(dayDate, dataHour));
   };
 
   const generateTimeSlotStyles = (event) => {
