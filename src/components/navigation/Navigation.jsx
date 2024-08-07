@@ -19,7 +19,7 @@ const Navigation = ({ language, weekDates }) => {
   const dayClassNames = (date) =>
     isCurrentDate(date)
       ? "calendar__day-label day-label day-label__current"
-      : "calendar__day-label day-label";
+      : "calendar__day-label day-label day-label__other";
   return (
     <header className="calendar__header">
       {weekDates.map((dayDate) => (

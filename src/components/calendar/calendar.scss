@@ -34,33 +34,33 @@
     flex: 1;
     border-left: 1px solid #eee;
 
-		&:last-child {
-			border-right: 1px solid #eee;
-		}
+    &:last-child {
+      border-right: 1px solid #eee;
+    }
   }
 
   &__time-slot {
-		display: flex;
+    display: flex;
     height: 60px;
     position: relative;
     border-bottom: 1px solid #eee;
 
-		&_event {
-			width: 100%;
-			position: relative;
-		}
+    &_event {
+      width: 100%;
+      position: relative;
+    }
   }
 
   &__day-label {
     flex: 1;
-		border: 1px solid rgba(0,0,0,0.6);
-		border-right: none;
-		padding: 15px 0;
-
-		&:last-child {
-			border: 1px solid rgba(0,0,0,0.6);
-		}
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-right: none;
+    padding: 15px 0;
   }
+}
+
+.day-label__other:last-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.6);
 }
 
 .day-label {
@@ -89,28 +89,28 @@
 }
 
 .day-label__current {
-	opacity: 1;
-	border: 1px solid cornflowerblue;
+  opacity: 1;
+  border: 1px solid cornflowerblue;
 }
 
 .day-label__current + .day-label {
-	border-left: none;
+  border-left: none;
 }
 
 .day-label__current .day-label__day-name {
-	color: cornflowerblue;
-	font-weight: 700;
+  color: cornflowerblue;
+  font-weight: 700;
 }
 
 .day-label__current .day-label__day-number {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
-	height: 35px;
-	width: 35px;
-	color: white;
-	font-weight: 700;
-	border-radius: 50%;
-	background-color: cornflowerblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 35px;
+  width: 35px;
+  color: white;
+  font-weight: 700;
+  border-radius: 50%;
+  background-color: cornflowerblue;
 }
