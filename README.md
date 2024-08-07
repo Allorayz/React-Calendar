@@ -1,11 +1,7 @@
 # React Calendar Project
-
-<hr> 
  <a href="https://allorayz-react-calendar.netlify.app/">Site link  </a>
 
-# The tech stack is: 
-
-<hr>
+# The tech stack is:
 <ul>
 <li>HTML5</li>
 <li>CSS3</li>
@@ -18,7 +14,6 @@
 </ul>
 
 # Author
-<hr> 
 <ul> 
 <li>Oleksii Ulianov</li>
 </ul>
