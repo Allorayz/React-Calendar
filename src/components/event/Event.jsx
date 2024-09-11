@@ -1,49 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /* hooks */
-import { useEvent } from "./hooks/useEvent";
-import { useEventMenu } from "./hooks/useEventMenu";
-import { useSubscription } from "../../hooks/useSubscription";
+import { useEvent } from './hooks/useEvent';
+import { useEventMenu } from './hooks/useEventMenu';
+import { useSubscription } from '../../hooks/useSubscription';
 /* hooks */
 
-import "./event.scss";
-
-const EventMenuWrapper = ({ showMenu, language, deleteEvent }) =>
-  showMenu && <EventMenu language={language} deleteEvent={deleteEvent} />;
-
-EventMenuWrapper.propTypes = {
-  showMenu: PropTypes.bool,
-  language: PropTypes.object,
-  deleteEvent: PropTypes.func,
-};
-
-const EventMenu = ({ language, deleteEvent }) => {
-  const eventMenuClickHandler = (event) => {
-    event.stopPropagation();
-  };
-
-  return (
-    <div
-      aria-hidden="true"
-      className="event__menu"
-      onClick={eventMenuClickHandler}
-    >
-      <div
-        aria-hidden="true"
-        onClick={deleteEvent}
-        className="event__menu-option"
-      >
-        {language.translation("Delete")}
-      </div>
-    </div>
-  );
-};
-
-EventMenu.propTypes = {
-  language: PropTypes.object,
-  deleteEvent: PropTypes.func,
-};
+import './event.scss';
 
 const Event = ({ language, event, deleteEvent }) => {
   const eventMenu = useEventMenu();
@@ -55,23 +19,24 @@ const Event = ({ language, event, deleteEvent }) => {
   };
 
   return (
-    <React.Fragment>
-      <div
-        aria-hidden="true"
-        style={eventEntry.style}
-        onClick={eventEntry.click}
-        className={eventEntry.classes}
-        onContextMenu={eventMenu.show}
-      >
+    <div
+      aria-hidden="true"
+      style={eventEntry.style}
+      onClick={eventEntry.click}
+      className="event"
+      onContextMenu={eventMenu.show}
+    >
+      <div className={eventEntry.classes}>
         <div className="event__title">{eventEntry.title}</div>
-        <div className="event__time">{eventEntry.period}</div>
+        <div className="event__time">{eventEntry.period}</div>{' '}
       </div>
-      <EventMenuWrapper
-        language={language}
-        deleteEvent={DELETE}
-        showMenu={eventMenu.state.show}
-      />
-    </React.Fragment>
+      <div className="event__description">{eventEntry.description}</div>
+      <div className="event__menu">
+        <div aria-hidden="true" onClick={DELETE} className="event__menu-option">
+          {language.translation('Delete')}
+        </div>
+      </div>
+    </div>
   );
 };
 

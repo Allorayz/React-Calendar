@@ -1,7 +1,7 @@
-import { parseDate } from "../../../gateway/parseDate";
-import { correctNumber } from "../../../gateway/correctNumber";
+import { parseDate } from '../../../gateway/parseDate';
+import { correctNumber } from '../../../gateway/correctNumber';
 
-export const useEvent = (event) => {
+export const useEvent = event => {
   const dateTo = parseDate(new Date(event.dateTo));
   const dateFrom = parseDate(new Date(event.dateFrom));
 
@@ -14,8 +14,8 @@ export const useEvent = (event) => {
 
   const period = `${startPeriod} - ${endPeriod}`;
 
-  const classes = height > 60 ? "event event-full" : "event event-mini";
-  const click = (event) => {
+  const classes = height > 60 ? 'event__container event-full' : 'event__container event-mini';
+  const click = event => {
     event.stopPropagation();
   };
 
