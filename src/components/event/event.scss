@@ -25,6 +25,10 @@
     text-overflow: ellipsis;
   }
 
+  &__description {
+    overflow-y: auto;
+  }
+
   &:hover {
     background-color: #6495ed99;
   }
